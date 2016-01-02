@@ -163,12 +163,12 @@
                   action="degree_action"/>
 
         <record model="ir.actions.act_window" id="skill_action">
-            <field name="name">Skill</field>
+            <field name="name">Skills</field>
             <field name="res_model">hr_recruiting.skill</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="skill_menu" name="Skill" parent="qualifications_menu"
+        <menuitem id="skill_menu" name="Skills" parent="qualifications_menu"
                   action="skill_action"/>
 
 
