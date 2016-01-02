@@ -1,0 +1,152 @@
+<openerp>
+    <data>
+        <!--job position form view-->
+        <record model="ir.ui.view" id="job_form_view">
+            <field name="name">job.form</field>
+            <field name="model">hr_recruiting.job_position</field>
+            <field name="arch" type="xml">
+                <form string="Job Form">
+                <header>
+                        <button name="action_open" type="workflow"
+                                string="Change to open"
+                                states="open,closed"/>
+                        <button name="action_close" type="workflow"
+                                string="Close" states="closed"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+                </header>
+
+
+                    <sheet>
+                        <group>
+                            <group string="General">
+                                <field name="name"/>
+                                <field name="description"/>
+                                <field name="number_of_positions_available"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- window action -->
+        <!--
+            The following tag is an action definition for a "window action",
+            that is an action opening a view or a set of views
+        -->
+
+        <record model="ir.actions.act_window" id="job_list_action">
+            <field name="name">Job Position</field>
+            <field name="res_model">hr_recruiting.job_position</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create a new job position</p>
+            </field>
+        </record>
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_recruiting_menu" name="HR Recruiting"/>
+        <!-- A first level in the left side menu is needed
+             before using action= attribute -->
+        <menuitem id="recruiting_menu" name="Recruiting HR"
+                  parent="main_recruiting_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent and *after* its
+             action course_list_action -->
+        <menuitem id="hr_recruiting_menu" name="Job Positions" parent="recruiting_menu"
+                  action="job_list_action"/>
+
+        <!-- Application form view-->
+
+        <record model="ir.ui.view" id="application_form_view">
+            <field name="name">application.form</field>
+            <field name="model">hr_recruiting.application</field>
+            <field name="arch" type="xml">
+                <form string="Applicion Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="active_applicant"/>
+                                <field name="job_pos_ids"/>
+                                <field name="interview_date"/>
+                                <field name="hired"/>
+                                <field name="number_of_positions"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <!-- Application tree/list view-->
+        <record model="ir.ui.view" id="application_tree_view">
+            <field name="name">application.tree</field>
+            <field name="model">hr_recruiting.application</field>
+            <field name="arch" type="xml">
+                <tree string="Application Tree">
+                    <field name="active_applicant"/>
+                    <field name="job_pos_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="application_action">
+            <field name="name">Application</field>
+            <field name="res_model">hr_recruiting.application</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create new job application</p>
+            </field>
+        </record>
+
+        <menuitem id="application_menu" name="Application" parent="recruiting_menu"
+                    action="application_action"/>
+
+        <!-- Applicant form view-->
+
+        <record model="ir.ui.view" id="applicant_form_view">
+            <field name="name">applicant.form</field>
+            <field name="model">hr_recruiting.applicant</field>
+            <field name="arch" type="xml">
+                <form string="Applicant Form">
+                    <sheet>
+                        <group>
+                            <group string="General">
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <!--<notebook position="inside">-->
+                            <!--<page string="Qualifications">-->
+                                <!--<group>-->
+                                    <!--<field name="skill_ids"/>-->
+                                    <!--<field name="degree_ids"/>-->
+                                <!--</group>-->
+                            <!--</page>-->
+                        <!--</notebook>-->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Applicant action window-->
+
+        <record model="ir.actions.act_window" id="applicant_action">
+            <field name="name">Applicant</field>
+            <field name="res_model">hr_recruiting.applicant</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create new applicant</p>
+            </field>
+        </record>
+
+        <!-- the following menuitem should appear *after*
+             its parent-->
+        <menuitem id="applicant_menu" name="Applicant" parent="recruiting_menu"
+                    action="applicant_action"/>
+
+        
+    </data>
+</openerp>

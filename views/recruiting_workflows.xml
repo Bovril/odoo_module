@@ -1,0 +1,51 @@
+<openerp>
+    <data>
+        <!-- Job postion workflows-->
+        <record model="workflow" id="wkf_job_position">
+            <field name="name">Job position job_positions workflow</field>
+            <field name="osv">hr_recruiting.job_position</field>
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="open">
+            <field name="name">Open</field>
+            <field name="wkf_id" ref="wkf_job_position"/>
+            <field name="flow_start" eval="True"/>
+            <field name="kind">function</field>
+            <field name="action">action_open()</field>
+        </record>
+        <record model="workflow.activity" id="closed">
+            <field name="name">Closed</field>
+            <field name="wkf_id" ref="wkf_job_position"/>
+            <field name="kind">function</field>
+            <field name="action">action_closed()</field>
+        </record>
+
+        <record model="workflow.transition" id="job_position_auto_closing">
+            <field name="act_from" ref="open"/>
+            <field name="act_to" ref="closed"/>
+            <field name="condition">number_of_positions_available &lt; 1</field>
+        </record>
+
+        <record model="workflow.transition" id="job_position_auto_open">
+            <field name="act_from" ref="closed"/>
+            <field name="act_to" ref="open"/>
+            <field name="condition">number_of_positions_available &gt; 0</field>
+        </record>
+
+
+        <record model="workflow.transition" id="job_position_open_to_closed">
+            <field name="act_from" ref="open"/>
+            <field name="act_to" ref="closed"/>
+            <field name="signal">open</field>
+        </record>
+        <record model="workflow.transition" id="job_position_closed_to_open">
+            <field name="act_from" ref="closed"/>
+            <field name="act_to" ref="open"/>
+            <field name="signal">closed</field>
+        </record>
+
+        <!-- application workflow-->
+    </data>
+</openerp>
+
