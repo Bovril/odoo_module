@@ -115,17 +115,18 @@
                     <sheet>
                         <group>
                             <group string="General">
-                                <field name="name"/>
+                                <field name="partner_name"/>
                             </group>
                         </group>
-                        <!--<notebook position="inside">-->
-                            <!--<page string="Qualifications">-->
-                                <!--<group>-->
-                                    <!--<field name="skill_ids"/>-->
-                                    <!--<field name="degree_ids"/>-->
-                                <!--</group>-->
-                            <!--</page>-->
-                        <!--</notebook>-->
+                        <notebook position="inside">
+                            <page string="Qualifications">
+                                <group>
+                                    <field name="skill_ids"
+                                           widget="many2many_tags"/>
+                                    <field name="degree_ids"/>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
@@ -147,6 +148,30 @@
         <menuitem id="applicant_menu" name="Applicant" parent="recruiting_menu"
                     action="applicant_action"/>
 
-        
+        <!-- Qualifications-->
+
+        <menuitem id="qualifications_menu" name="Qualifications"
+                  parent="main_recruiting_menu"/>
+
+        <record model="ir.actions.act_window" id="degree_action">
+            <field name="name">Degree</field>
+            <field name="res_model">hr_recruiting.degree</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="degree_menu" name="Degree" parent="qualifications_menu"
+                  action="degree_action"/>
+
+        <record model="ir.actions.act_window" id="skill_action">
+            <field name="name">Skill</field>
+            <field name="res_model">hr_recruiting.skill</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="skill_menu" name="Skill" parent="qualifications_menu"
+                  action="skill_action"/>
+
+
+
     </data>
 </openerp>
