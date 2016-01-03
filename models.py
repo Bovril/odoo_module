@@ -74,7 +74,7 @@ class Application(models.Model):
 
     job_pos_ids = fields.Many2one('hr_recruiting.job_position',
                                   string="Job position",
-                                  # domain=[('number_of_positions_available', '>', 0)]
+                                  domain=[('number_of_positions_available', '>', 0)]
                                   )
 
     interview_date = fields.Date()

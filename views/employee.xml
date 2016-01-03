@@ -1,0 +1,38 @@
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="employee_form_view">
+            <field name="name">employee.form</field>
+            <field name="model">employee.employee</field>
+            <field name="arch" type="xml">
+                <form string="Employee Form">
+                    <sheet>
+                        <group>
+                            <group string="General">
+                                <field name="name"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="employee_list_action">
+            <field name="name">Employee Position</field>
+            <field name="res_model">employee.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create a new employee </p>
+            </field>
+        </record>
+
+        <menuitem id="employee_menu" name="Employee"
+                  parent="main_recruiting_menu"/>
+        <!-- the following menuitem should appear *after*
+             its parent and *after* its
+             action course_list_action -->
+        <menuitem id="employee_menu_employee" name="Employee" parent="employee_menu"
+                  action="employee_list_action"/>
+
+    </data>
+</openerp>

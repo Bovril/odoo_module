@@ -27,6 +27,7 @@
         'templates.xml',
         'views/recruiting.xml',
         'views/recruiting_workflows.xml',
+        'views/employee.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
