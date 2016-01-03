@@ -37,12 +37,12 @@
         <record model="workflow.transition" id="job_position_open_to_closed">
             <field name="act_from" ref="open"/>
             <field name="act_to" ref="closed"/>
-            <field name="signal">open</field>
+            <field name="signal">closed</field>
         </record>
         <record model="workflow.transition" id="job_position_closed_to_open">
             <field name="act_from" ref="closed"/>
             <field name="act_to" ref="open"/>
-            <field name="signal">closed</field>
+            <field name="signal">open</field>
         </record>
 
         <!-- application workflow-->
